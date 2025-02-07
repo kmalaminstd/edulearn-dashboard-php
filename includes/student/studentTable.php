@@ -1,9 +1,16 @@
+<?php
+    
+    require "./functions/users/studentList.php";
+
+?>
+
 <div class="content-section">
                 <div class="table-header">
                     <div class="search-box">
                         <input type="text" placeholder="Search students...">
                         <i class="fas fa-search"></i>
                     </div>
+                    <!--
                     <div class="filters">
                         <select>
                             <option>All Courses</option>
@@ -13,6 +20,7 @@
                         </select>
                         <button class="add-student-btn"><i class="fas fa-plus"></i> Add Student</button>
                     </div>
+                    -->
                 </div>
 
                 <table class="student-table">
@@ -32,24 +40,15 @@
 
                         // session_start();
 
-                        $curl = curl_init();
-                        curl_setopt_array($curl, [
-                            CURLOPT_URL => 'http://localhost/eduwebbackend/studentlist.php',
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_HTTPHEADER => [
-                                'Authorization: Bearer ' . $_SESSION['admin_token'],
-                                'Content-Type: application/json',
-                                'page: ' . $_GET['page']
-                            ]
-                        ]);
+                        
 
-                        $resp = curl_exec($curl);
-                        $data = json_decode($resp, true);
+                        // var_dump($resp);
 
                         // var_dump($data['data']['data']);
 
                         if(!isset($data['data']['data']) || !$data){
                             echo "<h4>No student found</h4>";
+                            exit;
                         }
 
                         // var_dump($data);
@@ -59,28 +58,28 @@
                             $dataStr = new DateTime($user['created_at']);
                             $formatedData = $dataStr->format('F j, Y, g:i a');
                             echo "<tr>
-                            <td>{$user['id']}</td>
-                            <td>
-                                <div class='student-info'>
-                                    <img src='./images/graduating-student.png' alt='student'>
-                                    <div>
-                                        <span class='name'>{$user['username']}</span>
-                                        <span class='enrollment'>Full-time</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{$user['email']}</td>
-                            
-                            <td>{$formatedData}</td>
-                            
-                            <td class='actions'>
-                            <button class='action-btn edit'><i class='fas fa-edit'></i></button>
-                            <button class='action-btn delete'><i class='fas fa-trash'></i></button>
-                            </td>
-                            </tr>";
+                                    <td>{$user['id']}</td>
+                                    <td>
+                                        <div class='student-info'>
+                                            <img src='./images/graduating-student.png' alt='student'>
+                                            <div>
+                                                <span class='name'>{$user['username']}</span>
+                                                <!-- <span class='enrollment'>Full-time</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{$user['email']}</td>
+                                    
+                                    <td>{$formatedData}</td>
+                                    
+                                    <td class='actions'>
+                                    <button class='action-btn edit'><i class='fas fa-edit'></i></button>
+                                    <button class='action-btn delete'><i class='fas fa-trash'></i></button>
+                                    </td>
+                                </tr>";
                             }
                             
-                            curl_close($curl);
+                            
                             
                             ?>
                             <!-- <button class='action-btn view"><i class='fas fa-eye'></i></button> -->

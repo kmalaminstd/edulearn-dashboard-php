@@ -2,7 +2,7 @@
     
     require "./functions/homepage/stat.php";
 
-    $totalStudent = $data['data']['total_student'];
+    $totalStudent = $statData['data']['total_student'];
 
     $frn = ceil($totalStudent / 10);
 

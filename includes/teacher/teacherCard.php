@@ -1,6 +1,7 @@
 <?php
     
     require "./functions/homepage/stat.php";
+    require "./functions/users/teacherList.php";
 
 ?>
 
@@ -8,25 +9,14 @@
 
     <?php
 
-    $totalTeacherNumber = $data['data']['total_teacher'];
+    $totalTeacherNumber = $statData['data']['total_teacher'];
 
     $pagenumber = isset($_GET['page']) ? $_GET['page'] : 1;
     $frn = ceil($totalTeacherNumber / 10);
 
        // session_start();
 
-       $curl = curl_init();
-       curl_setopt_array($curl, [
-           CURLOPT_URL => 'http://localhost/eduwebbackend/teacherlist.php',
-           CURLOPT_RETURNTRANSFER => true,
-           CURLOPT_HTTPHEADER => [
-               'Authorization: Bearer ' . $_SESSION['admin_token'],
-               'Content-Type: application/json'
-           ]
-       ]);
-
-       $resp = curl_exec($curl);
-       $data = json_decode($resp, true);
+       
 
        // var_dump($data['data']['data']);
 
@@ -68,7 +58,7 @@
         </div>";
         }
         
-        curl_close($curl);
+    
 
     ?>
 

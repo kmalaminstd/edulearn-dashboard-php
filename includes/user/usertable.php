@@ -1,5 +1,11 @@
 
 
+<?php
+    
+    require "./functions/users/allUserList.php";
+
+?>
+
 <table class="user-table">
                     <thead>
                         <tr>
@@ -18,25 +24,14 @@
 
                             // session_start();
 
-                            $page_number = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                            
 
-                            $curl = curl_init();
-                            curl_setopt_array($curl, [
-                                CURLOPT_URL => "http://localhost/eduwebbackend/userlist.php",
-                                CURLOPT_RETURNTRANSFER => true,
-                                CURLOPT_HTTPHEADER => [
-                                    'Authorization: Bearer ' . $_SESSION['admin_token'],
-                                    'Content-Type: application/json',
-                                    'offset: ' . $page_number
-                                ]
-                            ]);
-
-                            $curlResp = curl_exec($curl);
-                            $data = json_decode($curlResp, true);
+                            
                             // print_r($data);
 
                             if(!$data || !isset($data['data']['user']) ){
                                 echo "<h4> There are no user </h4>";
+                                exit;
                             };
 
                             foreach($data['data']['user'] as $user) {

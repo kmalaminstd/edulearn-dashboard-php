@@ -18,18 +18,7 @@
  
                         // session_start();
 
-                        $curl = curl_init();
-                        curl_setopt_array($curl, [
-                            CURLOPT_URL => 'http://localhost/eduwebbackend/recentuser.php',
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_HTTPHEADER => [
-                                'Authorization: Bearer ' . $_SESSION['admin_token'],
-                                'Content-Type: application/json'
-                            ]
-                        ]);
-
-                        $resp = curl_exec($curl);
-                        $data = json_decode($resp, true);
+                       require "./functions/users/recentUser.php";
 
                         // var_dump($data['data']['data']);
 
@@ -54,7 +43,7 @@
 
                             echo "<tr>
                                 <td>{$user['username']}</td>
-                                <td>{$user['role_name']}t</td>
+                                <td>{$user['role_name']}</td>
                                 <td>{$user['email']}</td>
                                 <td>{$formatedData}</td>
                                 <td>{$formatActDateStr}</td>
@@ -62,7 +51,7 @@
                             </tr>";
                             }
                             
-                            curl_close($curl);
+                            
                             
                             ?>
 

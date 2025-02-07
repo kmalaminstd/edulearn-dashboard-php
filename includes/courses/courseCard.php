@@ -17,10 +17,10 @@
                         <div class='course-card'>
                             <div class='course-thumbnail'>
                                 <img src='{$elm['thumbnail_url']}'>
-                                <span class='category'>{$elm['category']}</span>
+                                <span class='category'>". strtoupper($elm['category']) ."</span>
                             </div>
                             <div class='course-content'>
-                                <h3>{$elm['title']}</h3>
+                                <h3>". ucfirst($elm['title']) ."</h3>
                                 <p class='instructor'>By {$elm['author_name']}</p>
                                 <div class='course-stats'>
                                     <span><i class='fas fa-user'></i> 85 Students</span>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class='course-progress'>
                                     <div class='progress-bar'>
-                                        <div class='progress' style='width: 75%'></div>
+                                        <div class='progress' style='width: 100%'></div>
                                     </div>
                                     <!-- <span>75% Complete</span> -->
                                 </div>
@@ -55,7 +55,7 @@
 
                     <?php
 
-                        $totalCourse = $data['data']['total_course'];
+                        $totalCourse = $statData['data']['total_course'];
                         
                         $frn = ceil($totalCourse / 10);
 

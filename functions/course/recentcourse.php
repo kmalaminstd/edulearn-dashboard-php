@@ -5,11 +5,15 @@
 		session_start();
 	}
 
+	require './functions/env.php';
+
+	$url = $SELF_API_BASE_URL . "admin-recent-course-list.php";
+
 	try{
 
 		$curl = curl_init();
 		curl_setopt_array($curl, [
-			CURLOPT_URL => 'http://localhost/eduwebbackend/admin-recent-course-list.php',
+			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_HTTPHEADER => [
 				'Authorization: Bearer ' . $_SESSION['admin_token']

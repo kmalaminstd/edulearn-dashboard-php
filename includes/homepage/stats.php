@@ -9,14 +9,15 @@
 
                     // var_dump($data['data']['data']);
 
-                    if(!isset($data['data']) || !$data){
+                    if(!isset($statData['data']) || !$statData){
                         echo "<h4>No stat found</h4>";
+                        exit;
                     }
 
-                    $totalUser = $data['data']['total_user'];
-                    $totalTeacher = $data['data']['total_teacher'];
-                    $totalStudent = $data['data']['total_student'];
-                    $totalCourse = $data['data']['total_course'];
+                    $totalUser = $statData['data']['total_user'];
+                    $totalTeacher = $statData['data']['total_teacher'];
+                    $totalStudent = $statData['data']['total_student'];
+                    $totalCourse = $statData['data']['total_course'];
 
 
                     echo " <div class='stat-card'>

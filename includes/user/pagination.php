@@ -1,7 +1,7 @@
 <?php
     require "./functions/homepage/stat.php";
 
-    $totalUsers = $data['data']['total_user'];
+    $totalUsers = $statData['data']['total_user'];
 
     $frn = ceil($totalUsers/10);
 

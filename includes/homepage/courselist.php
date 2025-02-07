@@ -1,6 +1,7 @@
 <?php
     
     require './functions/course/recentcourse.php';
+    require './functions/env.php';
 
 ?>
 

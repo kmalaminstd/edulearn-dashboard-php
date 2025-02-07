@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         
         
         navLinks.forEach(link => {
+            
             // Remove active class from all links
             link.classList.remove('active');
             
@@ -63,10 +64,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             const href = link.getAttribute('href').replace('./', '');
             
             // Check if current page matches link href
-            if (currentPage === href || 
-                (currentPage === '' && href === 'index.php') ||
-                (currentPage === 'admin-profile.php' && href.includes('profile')) ||
-                (currentPage === 'admin-settings.php' && href.includes('settings'))) {
+            if (currentPage === href ||
+                (currentPage === '' && href === 'index.php') || href === 'user.php') {
                 link.classList.add('active');
             }
         });
