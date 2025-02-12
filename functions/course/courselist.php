@@ -2,7 +2,7 @@
 	
 	if(session_status() == PHP_SESSION_NONE){
 		session_name('eduwebdash_ui');
-		session_start();
+		session_start(); 
 	}
 
 	require './functions/env.php';

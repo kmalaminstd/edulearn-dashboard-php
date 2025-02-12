@@ -15,8 +15,12 @@
            ]
        ]);
 
-       $resp = curl_exec($curl);
+       $resp = curl_exec($curl); 
        $data = json_decode($resp, true);
+
+       // print_r($resp);
+
+       curl_close($curl);
    }catch(Exception $e){
    	echo $e;
    }

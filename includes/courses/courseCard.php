@@ -5,10 +5,12 @@
 
 ?>
 
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
 <div class="courses-grid">
 
             <?php
-
 
 
                 foreach ($courseData['data'] as $elm) {
@@ -16,16 +18,18 @@
 
                         <div class='course-card'>
                             <div class='course-thumbnail'>
-                                <img src='{$elm['thumbnail_url']}'>
+                                <video id='scv-player' playsinline controls poster='".$elm['thumbnail_url']."' src='{$elm['video_url']}'>
                                 <span class='category'>". strtoupper($elm['category']) ."</span>
                             </div>
                             <div class='course-content'>
                                 <h3>". ucfirst($elm['title']) ."</h3>
+                                
                                 <p class='instructor'>By {$elm['author_name']}</p>
                                 <div class='course-stats'>
-                                    <span><i class='fas fa-user'></i> 85 Students</span>
-                                    <span><i class='fas fa-clock'></i> 12 Hours</span>
+                                    <span><i class='fas fa-user'></i> {$elm['number_of_student']} Students</span>
+                                    <!-- <span><i class='fas fa-clock'></i> $". $elm['price'] ."</span> -->
                                 </div>
+                                <h4 class='course-price'>Price: $". $elm['price'] ." </h4>
                                 <div class='course-progress'>
                                     <div class='progress-bar'>
                                         <div class='progress' style='width: 100%'></div>
@@ -33,9 +37,11 @@
                                     <!-- <span>75% Complete</span> -->
                                 </div>
                                 <div class='course-actions'>
-                                    <button class='edit'><i class='fas fa-edit'></i></button>
-                                    <button class='view'><i class='fas fa-eye'></i></button>
-                                    <button class='delete'><i class='fas fa-trash'></i></button>
+                                    <form method='DELETE' action='./functions/course/deleteCourse.php'>
+                                        <input name='course-id' value='". $elm['course_id'] ."' hidden>
+                                        <button class='delete'><i class='fas fa-trash'></i></button>
+                                    </form>
+                                    
                                 </div>
                             </div>
                     </div>
@@ -79,3 +85,13 @@
                 </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        const plr = document.querySelectorAll('#scv-player');
+        // console.log(plr);
+        // const player = new Plyr('#scv-player')
+        for(let i = 0; i < plr.length; i++){
+            const player = new Plyr(plr[i]);
+        }
+        
+    </script>

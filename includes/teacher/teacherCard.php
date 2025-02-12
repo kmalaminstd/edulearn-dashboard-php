@@ -43,7 +43,7 @@
                 <i class='fas fa-video'></i>
                 <div class='stat-info'>
                     <span>Total Courses</span>
-                    <h4>0</h4>
+                    <h4>{$user['number_of_course']}</h4>
                 </div>
             </div>
         </div>
